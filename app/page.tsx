@@ -1,7 +1,13 @@
 export default function Home() {
   return (
-    <div className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-neutral-700 sm:items-start">
-      Home
+    <div className="flex flex-1 w-full flex-col items-center gap-6 py-4 px-16 sm:items-start">
+      <div className="flex w-full justify-between gap-4">
+        <div className="bg-neutral-900 rounded-xl h-60 w-full"></div>
+        <div className="bg-neutral-900 rounded-xl h-60 w-full"></div>
+        <div className="bg-neutral-900 rounded-xl h-60 w-full"></div>
+        <div className="bg-neutral-900 rounded-xl h-60 w-full"></div>
+      </div>
+      <div className="bg-neutral-900 rounded-xl h-80 w-full"></div>
     </div>
   );
 }
