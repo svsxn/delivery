@@ -6,7 +6,6 @@ export async function getDeliveryEarnings() {
   const { data, error } = await supabase.from("deliveries").select("amount");
 
   if (error) throw new Error(error.message);
-  console.log(data);
 
   const total = data
     .reduce((sum, row) => sum + (row.amount || 0), 0)
