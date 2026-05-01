@@ -2,7 +2,7 @@ import { getDeliveryEarnings } from "@/app/_queries";
 
 export default async function Navbar() {
   const data = await getDeliveryEarnings();
-  console.log(data);
+
   return (
     <nav className="bg-black h-22 flex justify-center text-white text-md">
       <div className="flex items-center justify-center bg-neutral-900 h-16 w-full"></div>
