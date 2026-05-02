@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DialogTrigger,
@@ -11,31 +13,88 @@ import {
 import { FieldGroup, Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState } from "react";
 
 export function AddDeliveryDialog() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Dodaj</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogTitle>Dodaj dostawę</DialogTitle>
-          <DialogHeader></DialogHeader>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Dodaj</Button>
+      </DialogTrigger>
+      <DialogContent aria-describedby={undefined} className="w-80">
+        <form
+          className="contents"
+          onSubmit={(e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.currentTarget);
+            console.log(Object.fromEntries(formData));
+
+            setOpen(false);
+          }}
+        >
+          <DialogHeader>
+            <DialogTitle>Dodaj kurs</DialogTitle>
+          </DialogHeader>
           <FieldGroup>
             <Field>
-              <Label htmlFor="amount-1">Ilość</Label>
-              <Input id="amount-1" name="amount" defaultValue="0"></Input>
+              <Label htmlFor="app">Platforma</Label>
+              <Select name="app" required>
+                <SelectTrigger id="app">
+                  <SelectValue placeholder="Wybierz platformę" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="ubereats" className="cursor-pointer">
+                      Uber Eats
+                    </SelectItem>
+                    <SelectItem value="glovo" className="cursor-pointer">
+                      Glovo
+                    </SelectItem>
+                    <SelectItem value="wolt" className="cursor-pointer">
+                      Wolt
+                    </SelectItem>
+                    <SelectItem value="bolt" className="cursor-pointer">
+                      Bolt Food
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field>
+              <Label htmlFor="amount">Zarobek (zł)</Label>
+              <Input
+                id="amount"
+                name="amount"
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="0.00"
+                required
+                className="no-spinner"
+              />
             </Field>
           </FieldGroup>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Anuluj</Button>
+              <Button type="button" variant="ghost">
+                Anuluj
+              </Button>
             </DialogClose>
-            <Button type="submit">Dodaj</Button>
+            <Button type="submit">Zapisz</Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 }
