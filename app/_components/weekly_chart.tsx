@@ -34,15 +34,16 @@ export function WeeklyChart() {
   return (
     <ChartContainer
       config={chartConfig}
-      className="min-h-50 w-full bg-neutral-900 rounded-xl border border-neutral-800 p-4"
+      className="min-h-50 w-full bg-card rounded-xl border p-4"
     >
       <BarChart accessibilityLayer data={chartData}>
-        <CartesianGrid vertical={false} stroke="#262626" />
+        <CartesianGrid vertical={false} stroke="var(--muted)" />
         <XAxis
           dataKey="day"
           tickLine={false}
           tickMargin={10}
           axisLine={false}
+          tick={{ fill: "var(--muted-foreground)", fontSize: 12 }}
         />
         {false && <ChartTooltip content={<ChartTooltipContent />} />}
         <Bar dataKey="amount" fill="var(--color-desktop)" radius={4} />
